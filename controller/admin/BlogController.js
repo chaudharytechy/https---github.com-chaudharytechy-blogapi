@@ -14,7 +14,11 @@ class BlogController {
     // console.log(data)
   
 
-    res.render('admin/blog/blogdisplay', { d: data })
+    // res.render('admin/blog/blogdisplay', { d: data })\
+    res.status(200).json({
+      success: true,
+    data
+  })
   }
 
   static bloginsert = async (req, res) => {
@@ -37,7 +41,11 @@ class BlogController {
       })
       await result.save()
     
-      res.redirect('admin/blogdisplay')
+      // res.redirect('admin/blogdisplay')
+      res.status(200).json({
+        success: true,
+      result
+    })
     // console.log(myimage)
     } catch (err) {
       console.log(err)
@@ -48,7 +56,11 @@ class BlogController {
     try{
       const results=await BlogModel.findById(req.params.id)
     // console.log(results)
-    res.render('admin/blog/blogview',{b:results})
+    // res.render('admin/blog/blogview',{b:results})
+    res.status(200).json({
+      success: true,
+    results
+  })
 
     }catch(err){
       console.log(err)
@@ -59,7 +71,11 @@ class BlogController {
     try{
       const results=await BlogModel.findById(req.params.id)
     // console.log(results)
-    res.render('admin/blog/blogedit',{b:results})
+    // res.render('admin/blog/blogedit',{b:results})
+    res.status(200).json({
+      success: true,
+    results
+  })
 
     }catch(err){
       console.log(err)
@@ -91,7 +107,11 @@ class BlogController {
         })
 
         await results.save()
-        res.redirect('/admin/blogdisplay')// redirect contain route fromm app.js
+        // res.redirect('/admin/blogdisplay')// redirect contain route fromm app.js
+        res.status(200).json({
+          success: true,
+        results
+      })
     }catch(err){
       console.log(err)
     }
@@ -105,7 +125,11 @@ static blogdelete=async(req,res)=>{
     await cloudinary.uploader.destroy(imageId)
 
   const results=await BlogModel.findByIdAndDelete(req.params.id)
-  res.redirect('/admin/blogdisplay');
+  // res.redirect('/admin/blogdisplay');
+  res.status(200).json({
+    success: true,
+
+})
 
   }catch(err){
     console.log(err)

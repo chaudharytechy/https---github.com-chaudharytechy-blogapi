@@ -6,7 +6,11 @@ class CategoryController {
 
         const data = await CategoryModel.find()
         // console.log(data)
-        res.render('admin/category', { d: data })
+        // res.render('admin/category', { d: data })
+        res.status(200).json({
+            success: true,
+          data
+        })
     }
 
     // insert method
@@ -19,7 +23,11 @@ class CategoryController {
                 category: req.body.category
             })
             await results.save()
-            res.redirect('/admin/category')
+            // res.redirect('/admin/category')
+            res.status(200).json({
+                success: true,
+              results
+            })
 
         } catch (err) {
             console.log(err)
@@ -30,7 +38,11 @@ class CategoryController {
         // console.log(req.params.id)
         try {
             const results = await CategoryModel.findById(req.params.id)
-            res.render('admin/categoryview', { b: results })
+            // res.render('admin/categoryview', { b: results })
+            res.status(200).json({
+                success: true,
+                 results
+            })
 
         } catch (error) {
             console.log(error)
@@ -42,7 +54,11 @@ class CategoryController {
         // console.log(req.params.id)
         try {
             const results = await CategoryModel.findById(req.params.id)
-            res.render('admin/categoryedit', { b: results })
+            // res.render('admin/categoryedit', { b: results })
+            res.status(200).json({
+                success: true,
+              results
+            })
         } catch (error) {
             console.log(error)
         }
@@ -58,7 +74,11 @@ class CategoryController {
             category: req.body.category
         })
         await results.save()
-        res.redirect('/admin/category')
+        // res.redirect('/admin/category')
+        res.status(200).json({
+            success: true,
+          results
+        })
 
        } catch (error) {
         console.log(error)
@@ -69,7 +89,11 @@ class CategoryController {
     static categorydelete=async(req,res)=>{
         try {
             const results=await CategoryModel.findByIdAndDelete(req.params.id)
-        res.redirect('/admin/category')
+        // res.redirect('/admin/category')
+        res.status(200).json({
+            success: true,
+            message:'delete successfully'
+        })
             
         } catch (error) {
             console.log(error)

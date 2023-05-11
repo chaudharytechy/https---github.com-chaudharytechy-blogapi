@@ -1,7 +1,7 @@
 const express = require('express')
 const { connect } = require('mongoose')
 var cloudinary = require('cloudinary').v2;
-
+const cors = require('cors')
 const connectDB=require('./db/connect_db')
 // env
 require('dotenv').config()
@@ -29,7 +29,7 @@ app.use(cookieParser())
 // connect_db call mongoDb
 connectDB()
 
-
+app.use(cors())
 cloudinary.config({
   cloud_name: 'dpnselvgk',
     api_key: '168413136638247',
@@ -63,7 +63,7 @@ app.use(session({
 
 
 //   router link 
-app.use('/',router)
+app.use('/api',router)
 
 
 // public file use
